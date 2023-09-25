@@ -5,6 +5,7 @@ const AUTH_CONFIG = {
   headers: {
     Accept: "application/json",
     "api-token":
+      // TODO: this should be as env variable. Leaving it here so it is easier to test the project quickly
       "PgUwFYMHPPLyuzT2aUDL0nhUv-GfhZZ5zjDmwES0vlJapf0RRdxQIVhCI8sQjJSvdYc",
     "user-email": "david.paleyy@gmail.com",
   },
