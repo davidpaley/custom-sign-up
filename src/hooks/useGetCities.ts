@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ObjectForSelect, State } from "../models";
+import { ObjectForSelect } from "../models";
 import { getCities } from "../services";
 
 export const useGetCities = (authToken: string, stateSelected: string) => {
@@ -7,7 +7,8 @@ export const useGetCities = (authToken: string, stateSelected: string) => {
   const [isLoading, setIsLoading] = useState(false);
   const stringifiedCities = JSON.stringify(cities);
   useEffect(() => {
-    if (cities.length && isLoading) {
+    const currentCities = JSON.parse(stringifiedCities);
+    if (currentCities.length && isLoading) {
       setIsLoading(false);
     }
   }, [stringifiedCities, isLoading]);
@@ -17,10 +18,10 @@ export const useGetCities = (authToken: string, stateSelected: string) => {
       setCities(response);
     };
 
-    if (!!stateSelected && !cities.length) {
+    if (!!stateSelected) {
       setIsLoading(true);
       handleGetCities();
     }
-  }, [stateSelected]);
+  }, [authToken, stateSelected]);
   return { isLoading, cities };
 };

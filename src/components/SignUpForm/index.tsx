@@ -22,8 +22,6 @@ export const SingUpForm: React.FC<{ authToken: string }> = ({
 }: {
   authToken: string;
 }) => {
-  const { isLoading: isStatesLoading, states } = useGetStates(authToken);
-
   const [formData, setFormData] = useState<SignUpData>({
     firstName: "",
     lastName: "",
@@ -32,7 +30,7 @@ export const SingUpForm: React.FC<{ authToken: string }> = ({
     email: "",
     password: "",
   });
-
+  const { isLoading: isStatesLoading, states } = useGetStates(authToken);
   const { cities, isLoading: isCitiesLoading } = useGetCities(
     authToken,
     formData.state
@@ -70,9 +68,6 @@ export const SingUpForm: React.FC<{ authToken: string }> = ({
 
   const handleStateChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;
-    // Fetch cities based on the selected state and update the city dropdown
-    // Implement this logic separately
-    // Example: fetchCities(value);
     setFormData({ ...formData, state: value, city: "" });
   };
 
@@ -129,9 +124,9 @@ export const SingUpForm: React.FC<{ authToken: string }> = ({
             handleChange={handleChange}
             errorMessage={errors.city}
             options={
-              isCitiesLoading
+              isCitiesLoading || isStatesLoading
                 ? [{ value: "", label: "Loading..." }]
-                : [{ value: "", label: "Select State" }, ...cities]
+                : [{ value: "", label: "Select City" }, ...cities]
             }
             submitedButtonClicked={submitedButtonClicked}
           />

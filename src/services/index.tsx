@@ -51,7 +51,6 @@ export const getCities = async (
       },
     }
   );
-  console.log({ response });
   const cities = response.data.map(({ city_name }) => ({
     label: city_name,
     value: city_name,

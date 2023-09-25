@@ -5,12 +5,11 @@ import { getStates } from "../services";
 export const useGetStates = (authToken: string) => {
   const [states, setStates] = useState<ObjectForSelect[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const stringifiedStates = JSON.stringify(states);
   useEffect(() => {
     if (states.length && isLoading) {
       setIsLoading(false);
     }
-  }, [stringifiedStates, isLoading]);
+  }, [states.length, isLoading]);
   useEffect(() => {
     const handleGetStates = async () => {
       const response = await getStates(authToken);
@@ -20,6 +19,6 @@ export const useGetStates = (authToken: string) => {
       setIsLoading(true);
       handleGetStates();
     }
-  }, [authToken]);
+  }, [authToken, states.length]);
   return { isLoading, states };
 };
