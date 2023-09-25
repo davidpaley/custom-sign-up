@@ -1,0 +1,26 @@
+/* .form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+ 
+} */
+
+.grid {
+  display: grid;
+  grid-template-rows: repeat(
+    3,
+    1fr
+  ); /* 3 rows with equal height and 1 last row with 1fr for desktop */
+  grid-template-columns: repeat(2, 1fr);
+
+  column-gap: 50px;
+  row-gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
