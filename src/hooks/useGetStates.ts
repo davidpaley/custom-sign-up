@@ -13,7 +13,7 @@ export const useGetStates = (authToken: string) => {
   useEffect(() => {
     let didCancel = false;
     const handleGetStates = async () => {
-      const response = await getStates(authToken);
+      const response = await getStates();
       if (!didCancel) {
         setStates(response);
       }

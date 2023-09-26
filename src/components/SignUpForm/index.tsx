@@ -79,7 +79,7 @@ export const SingUpForm: React.FC<{ authToken: string }> = ({
     const isThereErrors = handleValidateForm();
 
     if (!isThereErrors) {
-      sendData(authToken, formData);
+      sendData(formData);
     }
   };
 

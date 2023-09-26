@@ -15,7 +15,7 @@ export const useGetCities = (authToken: string, stateSelected: string) => {
   useEffect(() => {
     let didCancel = false;
     const handleGetCities = async () => {
-      const response = await getCities(authToken, stateSelected);
+      const response = await getCities(stateSelected);
       if (!didCancel) {
         setCities(response);
       }
@@ -24,6 +24,8 @@ export const useGetCities = (authToken: string, stateSelected: string) => {
     if (!!stateSelected) {
       setIsLoading(true);
       handleGetCities();
+    } else {
+      setCities([]);
     }
     return () => {
       didCancel = true;
