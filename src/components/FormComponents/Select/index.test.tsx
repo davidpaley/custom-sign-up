@@ -42,7 +42,7 @@ describe("Select component", () => {
     expect(selectContainer).toHaveClass("error");
   });
 
-  it.only("does not apply error styles when showError is false", () => {
+  it("does not apply error styles when showError is false", () => {
     const { container } = render(
       <Select
         label="Test Label"
