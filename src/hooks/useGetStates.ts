@@ -11,14 +11,20 @@ export const useGetStates = (authToken: string) => {
     }
   }, [states.length, isLoading]);
   useEffect(() => {
+    let didCancel = false;
     const handleGetStates = async () => {
       const response = await getStates(authToken);
-      setStates(response);
+      if (!didCancel) {
+        setStates(response);
+      }
     };
     if (!!authToken && !states.length) {
       setIsLoading(true);
       handleGetStates();
     }
+    return () => {
+      didCancel = true;
+    };
   }, [authToken, states.length]);
   return { isLoading, states };
 };

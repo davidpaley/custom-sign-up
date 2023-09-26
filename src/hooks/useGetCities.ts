@@ -13,15 +13,21 @@ export const useGetCities = (authToken: string, stateSelected: string) => {
     }
   }, [stringifiedCities, isLoading]);
   useEffect(() => {
+    let didCancel = false;
     const handleGetCities = async () => {
       const response = await getCities(authToken, stateSelected);
-      setCities(response);
+      if (!didCancel) {
+        setCities(response);
+      }
     };
 
     if (!!stateSelected) {
       setIsLoading(true);
       handleGetCities();
     }
+    return () => {
+      didCancel = true;
+    };
   }, [authToken, stateSelected]);
   return { isLoading, cities };
 };

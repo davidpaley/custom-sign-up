@@ -1,5 +1,5 @@
 import axios from "axios";
-import { City, ObjectForSelect, State } from "../models";
+import { City, ObjectForSelect, SignUpData, State } from "../models";
 
 const AUTH_CONFIG = {
   headers: {
@@ -19,7 +19,6 @@ export const getAuthToken = async () => {
     AUTH_TOKEN_URL,
     AUTH_CONFIG
   );
-
   return authToken;
 };
 
@@ -29,7 +28,7 @@ export const getStates = async (
   const response = await axios.get<State[]>(STATES_URL, {
     headers: {
       Authorization: `Bearer ${authToken}`,
-      Accept: "application/json",
+      Accept: " application/json",
     },
   });
   const states = response.data.map(({ state_name }) => ({
@@ -57,4 +56,9 @@ export const getCities = async (
     value: city_name,
   }));
   return cities;
+};
+
+export const sendData = async (authToken: string, body: SignUpData) => {
+  console.log({ body });
+  // TODO: make the post
 };

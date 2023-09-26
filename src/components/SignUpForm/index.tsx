@@ -1,13 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Input } from "../FormComponents/Input";
 import { SignUpData } from "../../models";
 import styles from "./index.module.css";
-import { Select } from "../FormComponents/Select";
-import { Button } from "../FormComponents/Button";
 import { validateForm } from "../../utils";
 import { useGetStates } from "../../hooks/useGetStates";
 import { useGetCities } from "../../hooks/useGetCities";
 import { FormUI } from "./FormUI";
+import { sendData } from "../../services";
 
 const ERRORS_INITIALIZATION = {
   firstName: "",
@@ -81,9 +79,7 @@ export const SingUpForm: React.FC<{ authToken: string }> = ({
     const isThereErrors = handleValidateForm();
 
     if (!isThereErrors) {
-      console.log({
-        ...formData,
-      });
+      sendData(authToken, formData);
     }
   };
 

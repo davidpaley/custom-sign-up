@@ -7,13 +7,19 @@ export const SignUpFormWrapper = () => {
   const [authToken, setAuthToken] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
+    let didCancel = false;
     const handleAuthTokenState = async () => {
       const authTokenResponse = await getAuthToken();
-      setIsLoading(false);
-      setAuthToken(authTokenResponse.data.auth_token);
+      if (!didCancel) {
+        setIsLoading(false);
+        setAuthToken(authTokenResponse.data.auth_token);
+      }
     };
     setIsLoading(true);
     handleAuthTokenState();
+    return () => {
+      didCancel = true;
+    };
   }, []);
   if (isLoading) return <Loading />;
 
