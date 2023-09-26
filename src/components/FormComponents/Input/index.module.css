@@ -10,12 +10,12 @@
   font-size: large;
   width: "40%";
   border-radius: 5px;
-  transition: border-color 0.3s ease; /* Smooth border color transition on focus */
+  transition: border-color 0.3s ease;
 }
 
 .input:focus {
-  border-color: #007bff; /* Input border color on focus */
-  outline: none; /* Remove default outline */
+  border-color: #007bff;
+  outline: none;
 }
 
 .error {
