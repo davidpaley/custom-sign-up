@@ -23,6 +23,7 @@ export const Input = ({
       <label>{label}</label>
       <input
         type={type}
+        data-testid="input"
         className={`${styles.input} ${showError && styles.error}`}
         name={name}
         value={value}

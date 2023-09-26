@@ -21,6 +21,7 @@ export const Select = ({
     <div className={styles.container}>
       <label>{label}</label>
       <select
+        data-testid="select"
         className={`${styles.select} ${!!showError && styles.error}`}
         name={name}
         value={value}
