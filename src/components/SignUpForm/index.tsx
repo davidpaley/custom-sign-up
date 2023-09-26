@@ -46,11 +46,8 @@ export const SingUpForm: React.FC<{ authToken: string }> = ({
     const formData: SignUpData = JSON.parse(formDataStringified);
     const validationErrors = validateForm(formData);
     const amountOfErrors = Object.keys(validationErrors).length > 0;
-    if (amountOfErrors) {
-      setErrors(validationErrors);
-    } else {
-      setErrors(ERRORS_INITIALIZATION);
-    }
+    setErrors(amountOfErrors ? validationErrors : ERRORS_INITIALIZATION);
+
     return !!amountOfErrors;
   }, [formDataStringified]);
 
@@ -70,7 +67,11 @@ export const SingUpForm: React.FC<{ authToken: string }> = ({
 
   const handleStateChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;
-    setFormData({ ...formData, state: value, city: "" });
+    setFormData(prevState => ({
+      ...prevState,
+      state: value,
+      city: "",
+    }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {

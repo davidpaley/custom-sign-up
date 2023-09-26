@@ -23,6 +23,7 @@ export const useGetCities = (authToken: string, stateSelected: string) => {
 
     if (!!stateSelected) {
       setIsLoading(true);
+      setCities([]);
       handleGetCities();
     } else {
       setCities([]);
